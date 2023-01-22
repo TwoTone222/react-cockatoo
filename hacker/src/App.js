@@ -9,11 +9,12 @@ const todoList =[
 
 function App() {
 return (
-  <h1> Todo List
+  <div> 
+    <h1> Todo List </h1>
     <ul>
-     {todoList.map(todo => <todoListItem key ={todoList.id} title={todoList.title} />)}
+     {todoList.map(todo => <li key ={todo.id} >{todo.title}</li>)}
     </ul>
-  </h1>
+    </div>
  )
 };
 
