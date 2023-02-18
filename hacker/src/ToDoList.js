@@ -7,12 +7,12 @@ const todoList = [
   {id: 3, title: "Submit Work"},
 ]
 
-function TodoList(){
+function TodoList(props){
   return (
    <ul>
-    {todoList.map(todo => <TodoListItem key ={todo.id} todo={todo} />)}
+    {props.todoList.map((item) => {return <TodoListItem key ={item.id} title={item.title} />; })}
    </ul>
-  )
+  );
 }
 
 export default TodoList;
