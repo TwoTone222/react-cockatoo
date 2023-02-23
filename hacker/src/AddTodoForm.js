@@ -4,7 +4,7 @@ function AddTodoForm(props) {
     const [todoTitle, setTodoTitle] = useState('');
 
     const handleTitleChange =(event) => {
-      const newTodoTitle = e.target.value;
+      const newTodoTitle = event.target.value;
       setTodoTitle(newTodoTitle);
     };
 
@@ -24,5 +24,6 @@ function AddTodoForm(props) {
         <button type="submit">Add</button>
       </form>
     );
-  }
-export default AddTodoForm;
+    }; 
+      
+  export default AddTodoForm;
