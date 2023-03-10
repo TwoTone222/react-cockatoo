@@ -27,6 +27,7 @@ function App() {
   let addTodo = function (newTodo) {
     setTodoList([...todoList, newTodo]);
   };
+
   return (
     <>
       <h1>Todo List</h1>
@@ -34,6 +35,6 @@ function App() {
       <TodoList onRemoveTodo={removeTodo} todoList={todoList} />
     </>
   );
-}
+};
 
 export default App;
