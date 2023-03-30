@@ -1,6 +1,9 @@
 import React from "react";
+import {BrowserRouter, Routes, Route, Link} from "react-router-dom";
 import TodoList from "./ToDoList";
 import AddTodoForm from "./AddTodoForm";
+
+const API_ENDPOINT = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/Default/`;
 
 function App() {
 
@@ -8,28 +11,19 @@ function App() {
   const [isLoading, setIsLoading] = React.useState(true);
   //Below the todoList state, define a useEffect React hook with an empty dependency list
   React.useEffect(() => {
-    // Inside the side-effect handler function, define a new Promise and pass
-    // in a callback function with parameters resolve and reject
-    new Promise((resolve, reject) => 
-    //To mimic a loading delay, inside the callback function declare a timeout 
-    //(hint: setTimeout method) with the following arguments:
- //callback: function with no parameters
- //delay time: 2000 milliseconds (2 seconds)
-    setTimeout(
-      () => resolve({data: {
-        todoList: JSON.parse(localStorage.getItem("savedTodoList")) || [],
-      }, 
-      //Inside the timeout callback function, call the parameter resolve which is a callback function for when the 
-      //Promise is successful and pass it an Object with property data as a nested empty Object
-    }), 2000
-    )
-    ).then((result) => {
-      setTodoList(result.data.todoList);
+    fetch(`${API_ENDPOINT}`, {
+      method:"GET", 
+      headers: {
+        Authorization: `Bearer ${process.env.REACT_APP_AIRTABLE_API_KEY}`, },
+    })
+    .then((response) => response.json())
+    .then((result) => {
+      setTodoList(result.records);
       setIsLoading(false);
     });
+  }, []);
     //Inside the data object, add a property todoList and set it's value to the initial/default list state (copy from useState hook)
  //Update the default state for todoList to be an empty Array
-  }, []);
 
 
   React.useEffect(() => {
@@ -54,6 +48,17 @@ let addTodo = function (newTodo) {
   setTodoList([...todoList, newTodo]);
 };
 return (
+  <BrowserRouter>
+  <nav> 
+    <ul>
+      <Link to="/new">TodoList</Link> | <Link to="/new"> New Todo List</Link>
+ </ul>
+ </nav>
+ <Routes>
+
+<Route 
+ path="/"
+ element={
   <>
     <h1>Todo List</h1>
     <AddTodoForm onAddTodo={addTodo} />
@@ -61,10 +66,13 @@ return (
       <p>Loading...</p>
     ) : (<TodoList onRemoveTodo={removeTodo} todoList={todoList} />
     )}
-    
   </>
+}
+/>
+<Route path ="/new" element ={<h1>New Todo List</h1>} />
+</Routes>
+</BrowserRouter>
 );
 };
-console.log(process.env.REACT_APP_AIRTABLE_API_KEY);
 
 export default App;
