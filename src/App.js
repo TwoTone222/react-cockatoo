@@ -1,4 +1,5 @@
 import React from "react";
+import {BrowserRouter, Routes, Route, Link} from "react-router-dom";
 import TodoList from "./ToDoList";
 import AddTodoForm from "./AddTodoForm";
 
@@ -47,6 +48,17 @@ let addTodo = function (newTodo) {
   setTodoList([...todoList, newTodo]);
 };
 return (
+  <BrowserRouter>
+  <nav> 
+    <ul>
+      <Link to="/new">TodoList</Link> | <Link to="/new"> New Todo List</Link>
+ </ul>
+ </nav>
+ <Routes>
+
+<Route 
+ path="/"
+ element={
   <>
     <h1>Todo List</h1>
     <AddTodoForm onAddTodo={addTodo} />
@@ -54,10 +66,13 @@ return (
       <p>Loading...</p>
     ) : (<TodoList onRemoveTodo={removeTodo} todoList={todoList} />
     )}
-    
   </>
+}
+/>
+<Route path ="/new" element ={<h1>New Todo List</h1>} />
+</Routes>
+</BrowserRouter>
 );
 };
-console.log(process.env.REACT_APP_AIRTABLE_API_KEY);
 
 export default App;
