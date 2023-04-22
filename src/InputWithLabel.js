@@ -1,8 +1,9 @@
 import React from "react";
+
 import { useRef } from "react";
 
 // useRef hook named inputRef passed to the ref attribute of the input element.
-// useEffect hook should be defined with an empty dependency list. I'm not giving it second argument,
+// useEffect hook should be defined with an empty dependency list. No second argument,
 // so it runs first on mount and then on every re-render.The side-effect handler function
 // of the useEffect hook calls the focus() method on the current property of the inputRef
 // to set focus on the input element.
