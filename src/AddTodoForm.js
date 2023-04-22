@@ -1,11 +1,12 @@
 import React, {useState} from 'react';
-import InputWithLabel from './InputWithLabel';
+import InputWithLabel from '../src/InputWithLabel';
+import styles from "./TodoListItem.module.css"
 
 function AddTodoForm({onAddTodo}) {
     const [todoTitle, setTodoTitle] = useState('');
 
-    const handleTitleChange =(event) => {
-      const newTodoTitle = event.target.value;
+    let handleTitleChange =(event) => {
+      let newTodoTitle = event.target.value;
       setTodoTitle(newTodoTitle);
     };
 
@@ -15,13 +16,13 @@ function AddTodoForm({onAddTodo}) {
           alert("Empty form submission, Please input title.")
         } else {  
           onAddTodo({ title: todoTitle, id: Date.now()});
-        console.log(todoTitle);
-        setTodoTitle ("");
+        setTodoTitle (" ");
         }
     };
 
     return (
-      <form onSubmit={(e) => handleAddTodo(e)}>
+      <> 
+         <form onSubmit={(event) => handleAddTodo(event)}>
          <InputWithLabel
         todoTitle={todoTitle}
         handleTitleChange={handleTitleChange}
@@ -29,9 +30,13 @@ function AddTodoForm({onAddTodo}) {
          >
         <strong>Title: </strong>
       </InputWithLabel>
-      <button type="submit">Add</button>
+      <button className ={styles.button}type="submit">
+        Add
+      </button>
     </form>
-    );
+    </>
+
+    )
     }; 
       
   export default AddTodoForm;
