@@ -22,7 +22,8 @@ function App() {
     fetch(url, options)
       .then((response) => response.json())
       .then((result) => {
-        setTodoList(result.records);
+        console.dir(result)
+        setTodoList(result.records||[]);
         setIsLoading(false);
       })
       .catch((error) => console.warn(error));
