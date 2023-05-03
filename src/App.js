@@ -50,6 +50,10 @@ function App() {
   };
 
 const addTodo = function (newTodo) {
+  //change schema of todo so that Airtable accepts it
+  //POST to Airtable
+  //use the response data as the new todo for setTodoList below.
+  //refactor todos to use the id that Airtable provides.
   setTodoList([...todoList, newTodo]);
 };
 return (
