@@ -15,7 +15,7 @@ function AddTodoForm({onAddTodo}) {
         if(todoTitle === "") {
           alert("Empty form submission, Please input title.")
         } else {  
-          onAddTodo({ title: todoTitle, id: Date.now()});
+          onAddTodo({ title: todoTitle});
         setTodoTitle (" ");
         }
     };
