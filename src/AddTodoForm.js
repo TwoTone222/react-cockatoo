@@ -11,11 +11,12 @@ function AddTodoForm({onAddTodo}) {
     };
 
     function handleAddTodo(event){
+      console.log('test2')
         event.preventDefault();
         if(todoTitle === "") {
           alert("Empty form submission, Please input title.")
         } else {  
-          onAddTodo({ title: todoTitle, id: Date.now()});
+          onAddTodo({ Title: todoTitle});
         setTodoTitle (" ");
         }
     };
