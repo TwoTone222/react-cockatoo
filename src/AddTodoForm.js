@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import InputWithLabel from '../src/InputWithLabel';
+import TodoList from './ToDoList';
 import styles from "./TodoListItem.module.css"
 
 function AddTodoForm({onAddTodo}) {
@@ -11,27 +12,26 @@ function AddTodoForm({onAddTodo}) {
     };
 
     function handleAddTodo(event){
-      console.log('test2')
         event.preventDefault();
-        if(todoTitle === "") {
+        if(todoTitle === " ") {
           alert("Empty form submission, Please input title.")
         } else {  
           onAddTodo({ Title: todoTitle});
-        setTodoTitle (" ");
+        setTodoTitle('');
         }
     };
-
+    console.log(todoTitle)
     return (
       <> 
          <form onSubmit={(event) => handleAddTodo(event)}>
          <InputWithLabel
-        todoTitle={todoTitle}
+        todoTitle={todoTitle.id}
         handleTitleChange={handleTitleChange}
         children
          >
         <strong>Title: </strong>
       </InputWithLabel>
-      <button className ={styles.button}type="submit">
+      <button className = {styles.button}type="submit">
         Add
       </button>
     </form>
